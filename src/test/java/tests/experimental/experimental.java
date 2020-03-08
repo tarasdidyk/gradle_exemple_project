@@ -24,12 +24,12 @@ public class experimental {
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        Configuration.driverManagerEnabled = false;
-        Configuration.remote = "http://192.168.0.104:4444/wd/hub";
+      /*  Configuration.driverManagerEnabled = false;
+        Configuration.remote = "http://192.168.0.104:4444/wd/hub";*/
 
-/*        String urlToRemoteWD = "http://192.168.0.106:4444/wd/hub";
-        RemoteWebDriver driver =new RemoteWebDriver(new URL(urlToRemoteWD), DesiredCapabilities.firefox());
-        WebDriverRunner.setWebDriver(driver);*/
+      String urlToRemoteWD = "http://192.168.0.106:4444/wd/hub";
+        RemoteWebDriver driver =new RemoteWebDriver(new URL(urlToRemoteWD), DesiredCapabilities.chrome());
+        WebDriverRunner.setWebDriver(driver);
     }
 
     @Test(alwaysRun = true)
