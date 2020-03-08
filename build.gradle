@@ -1,0 +1,48 @@
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'io.qameta.allure'
+defaultTasks 'clean', 'test'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.5"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+allure {
+    autoconfigure = true
+    aspectjweaver = true
+    version = "2.2.1"
+    aspectjVersion = "1.8.11"
+}
+
+configurations {
+    agent
+}
+
+dependencies {
+    agent "org.aspectj:aspectjweaver:1.8.10"
+    testImplementation 'org.seleniumhq.selenium:selenium-java:3.14.0'
+    testImplementation 'com.codeborne:selenide:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+task experimental(type: Test) {
+    useTestNG() {
+            suites './src/test/resources/testng/exp.xml'
+    }
+}
+
+
