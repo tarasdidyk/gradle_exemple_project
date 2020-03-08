@@ -47,3 +47,4 @@ out/
 **/pages/*.html
 **/har/*.har
 **/allure-report.zip
+!gradle/wrapper/gradle-wrapper.jar
