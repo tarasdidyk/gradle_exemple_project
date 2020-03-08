@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="experimental">
+
+    <test name="exp">
+        <classes>
+            <class name="tests.experimental.experimental" />
+        </classes>
+    </test>
+
+</suite>
