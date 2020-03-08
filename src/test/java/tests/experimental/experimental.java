@@ -22,9 +22,8 @@ import static com.codeborne.selenide.CollectionCondition.*;
 
 public class experimental {
 
-    @BeforeEach
+    @BeforeSuite
     void setUp() throws MalformedURLException {
-        Configuration.baseUrl = "http://192.168.0.104:4444/wd/hub";
         Configuration.remote = "http://192.168.0.104:4444/wd/hub";
     }
 
