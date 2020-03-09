@@ -10,7 +10,7 @@ public enum Browsers {
     Browsers(String  browser) {
         this.browser = browser;
     }
-    
+
     @Override
     public String toString() {
         return browser;
