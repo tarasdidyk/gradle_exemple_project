@@ -6,6 +6,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeSuite;
@@ -23,15 +25,18 @@ import static org.testng.Assert.assertEquals;
 
 public class experimental {
 
+    RemoteWebDriver remoteWebDriver;
+
     @BeforeEach
-    void setUp() {
-        Configuration.driverManagerEnabled = false;
-        Configuration.remote = "http://192.168.0.102:4444/wd/hub";
+    void setUp() throws MalformedURLException {
+        String url = "http://192.168.0.102:4444/";
+        ChromeOptions options = new ChromeOptions();
+        remoteWebDriver = new RemoteWebDriver(new URL(url), options);
     }
 
     @Test
     void ableToRunDefaultDriverOnSelenoid() {
-        open("https://www.google.com");
+        remoteWebDriver.get("https://google.com");
         assertEquals(title(), "Google");
     }
 }
