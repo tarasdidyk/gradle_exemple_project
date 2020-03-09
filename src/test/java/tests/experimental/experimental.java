@@ -32,7 +32,8 @@ public class experimental {
     void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException {
         String url = "http://192.168.0.102:4444/wd/hub";
         ChromeOptions options = new ChromeOptions();
-       openGoogle();
+        remoteWebDriver = new RemoteWebDriver(new URL(url), options);
+        openGoogle();
       /*  Configuration.driverManagerEnabled = false;
         Configuration.remote = "http://localhost:4444/wd/hub";
         open("https://www.google.com");*/
