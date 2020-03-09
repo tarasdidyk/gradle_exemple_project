@@ -40,7 +40,7 @@ public class experimental {
     void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException, InterruptedException {
         Configuration.driverManagerEnabled = false;
         Configuration.remote = "http://192.168.0.102:4444/wd/hub";
-        //Configuration.screenshots = true;
-        getWebDriver().navigate().to("dwqdqwdwqdwq");
+        Configuration.screenshots = true;
+        open("https://google.com");
     }
 }
