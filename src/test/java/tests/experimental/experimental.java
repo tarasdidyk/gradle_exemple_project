@@ -41,6 +41,6 @@ public class experimental extends TestListenerAdapter {
         Configuration.driverManagerEnabled = false;
         Configuration.remote = "http://192.168.0.102:4444/wd/hub";
         //Configuration.screenshots = true;
-
+        getWebDriver().navigate().to("dwqdqwdwqdwq");
     }
 }
