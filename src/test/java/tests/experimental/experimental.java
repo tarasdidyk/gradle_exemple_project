@@ -35,7 +35,7 @@ public class experimental {
         remoteWebDriver = new RemoteWebDriver(new URL(url), options);
         openGoogle();*/
         Configuration.driverManagerEnabled = false;
-        Configuration.remote = "http://192.168.0.102:4444/wd/hu";
+        Configuration.remote = "http://192.168.0.102:4444/wd/hub";
         open("https://google.com");
     }
 
