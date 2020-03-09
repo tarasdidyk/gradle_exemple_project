@@ -35,14 +35,18 @@ public class experimental extends TestListenerAdapter {
     RemoteWebDriver remoteWebDriver;
 
     @Test
-    void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException {
+    void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException, InterruptedException {
        /* String url = "http://192.168.0.102:4444/wd/hub";
         ChromeOptions options = new ChromeOptions();
         remoteWebDriver = new RemoteWebDriver(new URL(url), options);
         openGoogle();*/
         Configuration.driverManagerEnabled = false;
         Configuration.remote = "http://192.168.0.102:4444/wd/hub";
+        Configuration.screenshots = true;
         open("https://google.com");
+        Thread.sleep(2999);
+        saveScreenshot();
+        Thread.sleep(2999);
     }
 
     @Step("open google ")
