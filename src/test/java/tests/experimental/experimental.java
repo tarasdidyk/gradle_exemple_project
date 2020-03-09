@@ -34,7 +34,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
 @ExtendWith({ScreenShooterExtension.class})
-public class experimental extends TestListenerAdapter {
+public class experimental {
 
     @Test
     void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException, InterruptedException {
