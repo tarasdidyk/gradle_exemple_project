@@ -18,25 +18,20 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.CollectionCondition.*;
+import static org.testng.Assert.assertEquals;
 
 
 public class experimental {
 
     @BeforeEach
-    void setUp() throws MalformedURLException {
+    void setUp() {
         Configuration.driverManagerEnabled = false;
-        Configuration.remote = "http://192.168.0.102:4444/wd/hub/";
+        Configuration.remote = "http://192.168.0.102:4444/wd/hub";
     }
 
-    @Test(alwaysRun = true)
-    public void Test1() throws InterruptedException {
-        open("https://google.com");
-        Thread.sleep(5000);
-    }
-
-    @Test(alwaysRun = true)
-    public void Test12() throws InterruptedException {
-        open("https://google.com");
-        Thread.sleep(5000);
+    @Test
+    void ableToRunDefaultDriverOnSelenoid() {
+        open("https://www.google.com");
+        assertEquals(title(), "Google");
     }
 }
