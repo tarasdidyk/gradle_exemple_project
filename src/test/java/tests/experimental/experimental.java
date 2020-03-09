@@ -4,6 +4,7 @@ package tests.experimental;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,10 +32,14 @@ public class experimental {
     void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException {
         String url = "http://192.168.0.102:4444/wd/hub";
         ChromeOptions options = new ChromeOptions();
-        remoteWebDriver = new RemoteWebDriver(new URL(url), options);
-        remoteWebDriver.get("https://google.com");
+       openGoogle();
       /*  Configuration.driverManagerEnabled = false;
         Configuration.remote = "http://localhost:4444/wd/hub";
         open("https://www.google.com");*/
+    }
+
+    @Step("open google ")
+    public void openGoogle() {
+        remoteWebDriver.get("https://google.com");
     }
 }
