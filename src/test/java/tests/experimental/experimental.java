@@ -25,7 +25,7 @@ public class experimental {
     @BeforeEach
     void setUp() throws MalformedURLException {
         Configuration.driverManagerEnabled = false;
-        Configuration.remote = "http://192.168.0.102:4444/wd/hub";
+        Configuration.remote = "http://192.168.0.102:4444/wd/hub/";
     }
 
     @Test(alwaysRun = true)
