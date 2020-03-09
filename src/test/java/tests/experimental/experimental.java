@@ -7,6 +7,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import tests.common.BaseTest;
 
 import java.util.logging.Level;
@@ -19,8 +20,8 @@ public class experimental extends BaseTest {
     @BeforeAll
     static void setUp() {
         LoggingPreferences logPrefs = new LoggingPreferences();
-        logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
-        Configuration.browserCapabilities.setCapability("goog:loggingPrefs", logPrefs);
+        Configuration.browserCapabilities.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        //Configuration.browserCapabilities.setCapability("goog:loggingPrefs", logPrefs);
     }
 
     @Test
