@@ -27,16 +27,10 @@ public class experimental {
 
     RemoteWebDriver remoteWebDriver;
 
-    @BeforeEach
-    void setUp() throws MalformedURLException {
+    @Test
+    void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException {
         String url = "http://192.168.0.102:4444/";
         ChromeOptions options = new ChromeOptions();
         remoteWebDriver = new RemoteWebDriver(new URL(url), options);
-    }
-
-    @Test
-    void ableToRunDefaultDriverOnSelenoid() {
-        remoteWebDriver.get("https://google.com");
-        assertEquals(title(), "Google");
     }
 }
