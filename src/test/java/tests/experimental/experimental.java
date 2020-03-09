@@ -28,6 +28,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
 public class experimental extends TestListenerAdapter {
@@ -66,6 +67,6 @@ public class experimental extends TestListenerAdapter {
 
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshot() {
-        return ((TakesScreenshot) remoteWebDriver).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
