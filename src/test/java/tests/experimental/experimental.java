@@ -32,5 +32,6 @@ public class experimental {
         String url = "http://192.168.0.102:4444/";
         ChromeOptions options = new ChromeOptions();
         remoteWebDriver = new RemoteWebDriver(new URL(url), options);
+        remoteWebDriver.get("https://google.com");
     }
 }
