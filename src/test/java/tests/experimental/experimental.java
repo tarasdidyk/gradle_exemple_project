@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import org.testng.annotations.BeforeSuite;
@@ -42,5 +43,6 @@ public class experimental {
         Configuration.remote = "http://192.168.0.102:4444/wd/hub";
         Configuration.screenshots = true;
         open("https://google.com");
+        Assert.assertEquals(getWebDriver().getTitle(), "Test");
     }
 }
