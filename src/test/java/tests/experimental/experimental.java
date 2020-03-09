@@ -30,7 +30,6 @@ public class experimental {
 
     @Test(alwaysRun = true)
     public void Test1() throws InterruptedException {
-        Configuration.remote = "http://192.168.0.102:4444/wd/hub";
         open("https://google.com");
         Thread.sleep(5000);
     }
