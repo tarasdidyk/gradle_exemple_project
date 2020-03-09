@@ -25,7 +25,7 @@ public class experimental {
     @BeforeSuite
     void setUp() throws MalformedURLException {
         Configuration.browser="chrome";
-        Configuration.remote = "http://192.168.0.104:4444/wd/hub";
+        Configuration.remote = "http://192.168.0.102:4444/wd/hub";
     }
 
     @Test(alwaysRun = true)
