@@ -4,10 +4,12 @@ package tests.experimental;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,42 +33,14 @@ import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
+@ExtendWith({ScreenShooterExtension.class})
 public class experimental extends TestListenerAdapter {
-
-    RemoteWebDriver remoteWebDriver;
 
     @Test
     void ableToRunDefaultDriverOnSelenoid() throws MalformedURLException, InterruptedException {
-       /* String url = "http://192.168.0.102:4444/wd/hub";
-        ChromeOptions options = new ChromeOptions();
-        remoteWebDriver = new RemoteWebDriver(new URL(url), options);
-        openGoogle();*/
         Configuration.driverManagerEnabled = false;
         Configuration.remote = "http://192.168.0.102:4444/wd/hub";
-        Configuration.screenshots = true;
-        open("https://google.com");
-        Thread.sleep(2999);
-        saveScreenshot();
-        Thread.sleep(2999);
-    }
+        //Configuration.screenshots = true;
 
-    @Step("open google ")
-    public void openGoogle() {
-        remoteWebDriver.get("https://google.com");
-    }
-
-    @Override
-    public void onTestFailure(ITestResult result) {
-        saveScreenshot();
-    }
-
-    @Override
-    public void onTestSuccess(ITestResult result) {
-        saveScreenshot();
-    }
-
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshot() {
-        return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
