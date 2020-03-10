@@ -10,7 +10,7 @@ public abstract class BaseTest {
     static void setUpDriver() {
         if (Utils.isEnvironmentRemote()) {
             Configuration.driverManagerEnabled = false;
-            Configuration.remote = "http://192.168.0.102:4444/wd/hub";
+            Configuration.remote = "http://192.168.0.103:4444/wd/hub";
         }
         Configuration.baseUrl = "http://nuwm.edu.ua/";
         //Configuration.browser = "firefox";
