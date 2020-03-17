@@ -1,8 +1,7 @@
 package utils;
 
-import org.testng.TestListenerAdapter;
 
-public class ScreenshotListener extends TestListenerAdapter {
+public class ScreenshotListener {
   
  /* @Override
   public void onTestFailure(ITestResult result) {
