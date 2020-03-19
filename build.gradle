@@ -33,8 +33,17 @@ dependencies {
     agent "org.aspectj:aspectjweaver:1.8.10"
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testImplementation 'com.codeborne:selenide:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+}
+
+tasks.withType(Test) {
+    ignoreFailures = true
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+    testLogging.showStandardStreams = true
+    systemProperty 'target.environment', System.getProperty('target.environment')
+    systemProperty 'home.page.url', System.getProperty('home.page.url')
+    systemProperty 'allure.results.directory', 'build/allure-results'
 }
 
 task generateAllure(type: Exec) {
