@@ -12,5 +12,4 @@ public class HomePage extends BasePage {
   public HomePage() {
     menuBlock = new MenuBlock();
   }
-
 }
