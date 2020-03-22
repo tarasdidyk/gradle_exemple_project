@@ -4,7 +4,6 @@ import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBy;
 import utils.DriverHelper;
 import utils.enums.AboutPolytechnics;
 
