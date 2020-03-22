@@ -20,9 +20,7 @@ public abstract class BaseTest {
     }
     Configuration.baseUrl = "https://lpnu.ua/en";
     Configuration.startMaximized = true;
-    //Configuration.timeout = 30000;
   }
-
 
   @AfterEach
   public void tearDown() {
