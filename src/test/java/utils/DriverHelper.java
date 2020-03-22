@@ -8,14 +8,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.element;
 
 public class DriverHelper extends BaseTest {
-  private static final int TIMEOUT_SHORT = 30;
-
-  SelenideWait selenideWait;
-
-  public DriverHelper() {
-
-  }
-
+  
   public void selectMenuItem(String menuItemName) {
     element(By.xpath("//ul[contains(@class, 'dropdown-menu')]")).should(appear);
     String locator = String.format("//ul[contains(@class, 'dropdown-menu')]" +
