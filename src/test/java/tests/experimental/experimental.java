@@ -1,7 +1,10 @@
 package tests.experimental;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +24,7 @@ import java.util.HashMap;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class experimental {
   /*HomePage homePage;
@@ -89,6 +93,7 @@ public class experimental {
     }
   }
 
+  @Tag("test")
   @Test
   public void downloadLogLevelReportNetNetworkTest() throws InterruptedException {
     init();
@@ -108,6 +113,16 @@ public class experimental {
   public static void down() {
     experimental experimental = new experimental();
     experimental.quiet();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    saveScreenshot();
+  }
+
+  @Attachment(value = "Page screenshot", type = "image/png")
+  public static byte[] saveScreenshot() {
+    return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
   }
 
   @Step
