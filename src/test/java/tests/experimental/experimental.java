@@ -1,7 +1,6 @@
 package tests.experimental;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,10 +12,7 @@ import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.HomePage;
-import tests.common.BaseTest;
 import utils.Utils;
-import utils.enums.AboutPolytechnics;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -54,12 +50,12 @@ public class experimental {
 
   public void init() {
     if (Utils.isEnvironmentRemote()) {
-/*      String downloadFilepath =  System.getProperty("//home//qa");
+      String downloadFilepath =  System.getProperty("//home//qa");
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
-      chromePrefs.put("download.default_directory", downloadFilepath);*/
+    /*  chromePrefs.put("download.default_directory", downloadFilepath);*/
       ChromeOptions options = new ChromeOptions();
-     /* options.setExperimentalOption("prefs", chromePrefs);*/
+      options.setExperimentalOption("prefs", chromePrefs);
       DesiredCapabilities cap = DesiredCapabilities.chrome();
       cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
       cap.setCapability(ChromeOptions.CAPABILITY, options);
@@ -107,7 +103,14 @@ public class experimental {
     Thread.sleep(60000);
   }
 
+
   @AfterAll
+  public static void down() {
+    experimental experimental = new experimental();
+    experimental.quiet();
+  }
+
+  @Step
   public void quiet(){
     if (Utils.isEnvironmentRemote()) {
       driver.quit();
