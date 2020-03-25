@@ -109,13 +109,6 @@ public class experimental {
     Thread.sleep(60000);
   }
 
-
-  @AfterAll
-  public static void down() {
-    experimental experimental = new experimental();
-    experimental.quiet();
-  }
-
   @AfterEach
   public void tearDown() {
     saveScreenshot();
@@ -129,8 +122,8 @@ public class experimental {
       return ((TakesScreenshot) driver1).getScreenshotAs(OutputType.BYTES);
   }
 
-  @Step
-  public void quiet() {
+  @AfterAll
+  public static void quiet() {
     if (Utils.isEnvironmentRemote()) {
       driver.quit();
     } else {
