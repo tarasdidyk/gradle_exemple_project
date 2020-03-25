@@ -2,7 +2,10 @@ package tests.experimental;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -22,8 +25,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class experimental {
@@ -47,17 +48,17 @@ public class experimental {
     Configuration.holdBrowserOpen = true;
   }*/
 
-  RemoteWebDriver driver;
-  WebDriver driver1;
+  public static RemoteWebDriver driver;
+  public static WebDriver driver1;
   @FindBy(linkText = "some-file.txt")
   private WebElement downloadFile;
 
   public void init() {
     if (Utils.isEnvironmentRemote()) {
-      String downloadFilepath =  System.getProperty("//home//qa");
+      String downloadFilepath = System.getProperty("//home//qa");
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
-    /*  chromePrefs.put("download.default_directory", downloadFilepath);*/
+      chromePrefs.put("download.default_directory", downloadFilepath);
       ChromeOptions options = new ChromeOptions();
       options.setExperimentalOption("prefs", chromePrefs);
       DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -76,7 +77,7 @@ public class experimental {
             .getPath());
     WebDriver driver = new ChromeDriver(cap);*/
     } else {
-      String downloadFilepath =  System.getProperty("user.dir");
+      String downloadFilepath = System.getProperty("user.dir");
       //String downloadFilepath = "C:\\1";
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -122,11 +123,14 @@ public class experimental {
 
   @Attachment(value = "Page screenshot", type = "image/png")
   public static byte[] saveScreenshot() {
-    return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
+    if (Utils.isEnvironmentRemote()) {
+      return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+      return ((TakesScreenshot) driver1).getScreenshotAs(OutputType.BYTES);
   }
 
   @Step
-  public void quiet(){
+  public void quiet() {
     if (Utils.isEnvironmentRemote()) {
       driver.quit();
     } else {
