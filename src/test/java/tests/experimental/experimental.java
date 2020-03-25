@@ -54,12 +54,12 @@ public class experimental {
 
   public void init() {
     if (Utils.isEnvironmentRemote()) {
-      String downloadFilepath =  System.getProperty("//home//qa");
+/*      String downloadFilepath =  System.getProperty("//home//qa");
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
-      chromePrefs.put("download.default_directory", downloadFilepath);
+      chromePrefs.put("download.default_directory", downloadFilepath);*/
       ChromeOptions options = new ChromeOptions();
-      options.setExperimentalOption("prefs", chromePrefs);
+     /* options.setExperimentalOption("prefs", chromePrefs);*/
       DesiredCapabilities cap = DesiredCapabilities.chrome();
       cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
       cap.setCapability(ChromeOptions.CAPABILITY, options);
