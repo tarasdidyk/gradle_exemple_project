@@ -53,9 +53,11 @@ public class experimental {
   @FindBy(linkText = "some-file.txt")
   private WebElement downloadFile;
 
-  public void init() {
+  public void init() throws MalformedURLException {
     if (Utils.isEnvironmentRemote()) {
       String downloadFilepath = "/home";
+      URL host = null;
+        host = new URL("http://192.168.0.105:4444/wd/hub");
 
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -70,16 +72,21 @@ public class experimental {
       cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
       cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
       cap.setCapability(ChromeOptions.CAPABILITY, options);
-      driver = new ChromeDriver(cap);
+      driver = new RemoteWebDriver(host,cap);
     } else {
-      String downloadFilepath = System.getProperty("user.dir");
-      //String downloadFilepath = "C:\\1";
+      String downloadFilepath = "C:\\1\\";
+
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
       chromePrefs.put("download.default_directory", downloadFilepath);
       ChromeOptions options = new ChromeOptions();
+      HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
       options.setExperimentalOption("prefs", chromePrefs);
+      options.addArguments("--test-type");
+      options.addArguments("--disable-extensions"); //to disable browser extension popup
+
       DesiredCapabilities cap = DesiredCapabilities.chrome();
+      cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
       cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
       cap.setCapability(ChromeOptions.CAPABILITY, options);
       System.setProperty("webdriver.chrome.driver",
@@ -91,7 +98,7 @@ public class experimental {
 
   @Tag("test")
   @Test
-  public void downloadLogLevelReportNetNetworkTest() throws InterruptedException {
+  public void downloadLogLevelReportNetNetworkTest() throws InterruptedException, MalformedURLException {
     init();
     if (Utils.isEnvironmentRemote()) {
       PageFactory.initElements(driver, this);
