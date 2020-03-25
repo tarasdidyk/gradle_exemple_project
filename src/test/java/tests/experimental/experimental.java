@@ -55,27 +55,22 @@ public class experimental {
 
   public void init() {
     if (Utils.isEnvironmentRemote()) {
-     /* String downloadFilepath = System.getProperty("//home//qa");
+      String downloadFilepath = "/home";
+
       HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
       chromePrefs.put("profile.default_content_settings.popups", 0);
-      chromePrefs.put("download.default_directory", downloadFilepath);*/
+      chromePrefs.put("download.default_directory", downloadFilepath);
       ChromeOptions options = new ChromeOptions();
-/*      options.setExperimentalOption("prefs", chromePrefs);*/
+      HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+      options.setExperimentalOption("prefs", chromePrefs);
+      options.addArguments("--test-type");
+      options.addArguments("--disable-extensions"); //to disable browser extension popup
+
       DesiredCapabilities cap = DesiredCapabilities.chrome();
-      /*cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-      cap.setCapability(ChromeOptions.CAPABILITY, options);*/
-      URL host = null;
-      try {
-        host = new URL("http://192.168.0.105:4444/wd/hub");
-      } catch (MalformedURLException e) {
-        e.printStackTrace();
-      }
-      driver = new RemoteWebDriver(host, cap);
-      driver.setFileDetector(new LocalFileDetector());
- /*   System.setProperty("webdriver.chrome.driver",
-        new File(this.getClass().getResource("/chromedriver.exe").getFile())
-            .getPath());
-    WebDriver driver = new ChromeDriver(cap);*/
+      cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+      cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+      cap.setCapability(ChromeOptions.CAPABILITY, options);
+      driver = new ChromeDriver(cap);
     } else {
       String downloadFilepath = System.getProperty("user.dir");
       //String downloadFilepath = "C:\\1";
