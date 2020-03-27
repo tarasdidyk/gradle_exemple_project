@@ -1,7 +1,7 @@
 package pages;
 
 import org.openqa.selenium.support.FindBy;
-import pages.blocks.common.BasePage;
+import pages.common.BasePage;
 import pages.blocks.homepage.MenuBlock;
 
 

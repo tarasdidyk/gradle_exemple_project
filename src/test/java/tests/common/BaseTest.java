@@ -1,6 +1,8 @@
 package tests.common;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.google.common.io.Resources;
 import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,6 +22,7 @@ public abstract class BaseTest {
     }
     Configuration.baseUrl = "https://lpnu.ua/en";
     Configuration.startMaximized = true;
+    Configuration.downloadsFolder = "";
   }
 
   @AfterEach
