@@ -1,4 +1,4 @@
-package pages.blocks.common;
+package pages.common;
 
 import utils.DriverHelper;
 
@@ -8,5 +8,4 @@ public class BasePage {
   public BasePage() {
     h = new DriverHelper();
   }
-
 }
