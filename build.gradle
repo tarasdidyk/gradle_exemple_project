@@ -34,6 +34,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testImplementation 'com.codeborne:selenide:5.7.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    testImplementation 'org.awaitility:awaitility:4.0.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-api:5.2.0'
 }
 
